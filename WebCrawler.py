@@ -44,7 +44,6 @@ def allPageLink():
         targetdiv = soup.find_all('a', text='下一页' )#这里偷懒，模拟真实用户，直接点下一页，所以就不需要存储链接啦
         print(targetdiv)
         nextPageUrl = re.findall(nextPageRegex, str(targetdiv)  )#获取下一页的链接
-        #为什么nextPageUrl为【】？
         print(nextPageUrl)
         linkStore.append(mainPageLine + nextPageUrl[0] )
      
