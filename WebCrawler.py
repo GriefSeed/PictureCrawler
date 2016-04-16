@@ -19,7 +19,7 @@ def allPageLink():
     firstLine = 'http://www.umei.cc/p/gaoqing/rihan/20150712182032.htm'#第一个页面
     
     linkStore.append(firstLine)
-    while linkStore != [] :
+    while 1 :
         
         print(linkStore[:])
         
@@ -40,11 +40,13 @@ def allPageLink():
         
         html = urllib.request.urlopen( linkStore.pop() )
         
-        soup = BeautifulSoup(html, from_encoding='GBK')#这里加入beautiful进行div的搜索
+        soup = BeautifulSoup(html, from_encoding='GBK')#这里加入beautiful进行<a>的搜索
         targetdiv = soup.find_all('a', text='下一页' )#这里偷懒，模拟真实用户，直接点下一页，所以就不需要存储链接啦
-        print(targetdiv)
+        #print(targetdiv)
         nextPageUrl = re.findall(nextPageRegex, str(targetdiv)  )#获取下一页的链接
-        print(nextPageUrl)
+        #print(nextPageUrl)
+        if nextPageUrl == []:
+            break
         linkStore.append(mainPageLine + nextPageUrl[0] )
      
 allPageLink()
