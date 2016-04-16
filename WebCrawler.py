@@ -1,14 +1,14 @@
-#coding:utf-8
+﻿#coding:utf-8
 '''
 Created on 2016.4.16
-进行模块整合
 @author: M
+
+用于爬取http://www.umei.cc上的美女写真
 '''
 import urllib.request,re
 from bs4 import BeautifulSoup
 import time
 def allPageLink():
-    # \d+.\d+\.htm
     pictureSum = 0      #图片总数
     filePath = "e:\\ot\\" #存储文件的路径
     linkStore = [] #用于存储页码链接的list，不需要填写
@@ -47,24 +47,5 @@ def allPageLink():
         #为什么nextPageUrl为【】？
         print(nextPageUrl)
         linkStore.append(mainPageLine + nextPageUrl[0] )
-        
-        
-
-        
-    #html = urllib.request.urlopen(url)
-    #soup = BeautifulSoup(html, 'html.parser')#这里加入beautiful进行div的搜索
-    
-    #targetdiv = soup.find_all('a',text ='下一页' )#这里偷懒，模拟真实用户，直接点下一页，所以就不需要存储链接啦
-
-    #nextPageUrl = re.findall('\d+.\d+\.htm', str(targetdiv)  ) 
-    
-    
-    '''
-    file = open(r'e:/umei.txt','w+')
-    file.write( str(html.read()) )
-    
-    nextPageUrl = set(re.findall('http://www.umei.cc/p/gaoqing/rihan/\d+.\d+\.htm', html.read().decode('ISO-8859-1') ) )
-    for url in nextPageUrl:
-        print(url+'\n')
-    '''
+     
 allPageLink()
